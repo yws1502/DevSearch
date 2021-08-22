@@ -26,9 +26,9 @@ secret_file = os.path.join(BASE_DIR, 'secrets.json')
 with open(secret_file) as f:
     secrets = json.loads(f.read())
 
-def get_key(setting, json=secrets):
+def get_key(setting, secrets=secrets):
     try:
-        return json[setting]
+        return secrets[setting]
     except KeyError:
         error_msg = 'Set the %s environment varible' % setting
         raise ImproperlyConfigured(error_msg)
@@ -123,9 +123,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ko-KR'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
