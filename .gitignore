@@ -6,6 +6,10 @@
 # secret-key
 secrets.json
 
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
 # User-specific files
 *.rsuser
 *.suo
