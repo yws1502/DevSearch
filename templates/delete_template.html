@@ -8,17 +8,10 @@
                 <a class="backButton" href="{% url 'account' %}"><i class="im im-angle-left"></i></a>
                 <br>
 
-                <form class="form" method="POST" enctype="multipart/form-data">
+                <form class="form" method="POST">
                     {% csrf_token %}
-
-                    {% for field in form %}
-                    <!-- Input:Text -->
-                    <div class="form__field">
-                        <label for="formInput#text">{{field.label}}: </label>
-                        {{field}}
-                    </div>
-                    {% endfor %}
-
+                    <p>Are you sure you want to delete "{{object}}"?</p>
+                    <a class="btn btn--sub btn--lg  my-md" href="{{request.GET.prev}}"/>Go Back</a>
                     <input class="btn btn--sub btn--lg  my-md" type="submit" value="Submit" />
                 </form>
             </div>
