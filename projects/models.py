@@ -1,7 +1,7 @@
 from django.db import models
 from users.models import Profile
 import uuid
-# Create your models here.
+# Created your models here.
 
 class Project(models.Model):
     owner = models.ForeignKey(Profile, null=True, blank=True, on_delete=models.CASCADE)
@@ -13,7 +13,7 @@ class Project(models.Model):
     tags = models.ManyToManyField('Tag', blank=True)
     vote_total = models.IntegerField(default=0, null=True, blank=True)
     vote_ratio = models.IntegerField(default=0, null=True, blank=True)
-    create = models.DateTimeField(auto_now_add=True)
+    created = models.DateTimeField(auto_now_add=True)
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
 
     def __str__(self):
@@ -48,7 +48,7 @@ class Review(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     body = models.TextField(null=True, blank=True)
     value = models.CharField(max_length=200, choices=VOTE_TYPE)
-    create = models.DateTimeField(auto_now_add=True)
+    created = models.DateTimeField(auto_now_add=True)
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
 
     class Meta:
@@ -59,7 +59,7 @@ class Review(models.Model):
 
 class Tag(models.Model):
     name = models.CharField(max_length=200)
-    create = models.DateTimeField(auto_now_add=True)
+    created = models.DateTimeField(auto_now_add=True)
     id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
 
     def __str__(self):
