@@ -15,7 +15,7 @@ def login_user(request):
         return redirect('profiles')
 
     if request.method == 'POST':
-        username = request.POST['username']
+        username = request.POST['username'].lower()
         password = request.POST['password']
         try:
             user = User.objects.get(username=username)
@@ -25,7 +25,7 @@ def login_user(request):
 
         if user is not None:
             login(request, user)
-            return redirect('profiles')
+            return redirect(request.GET['next'] if 'next' in request.GET else 'account')
         else:
             messages.error(request, 'Username OR password is incorrect')
     return render(request, 'users/login_register.html')
@@ -57,7 +57,7 @@ def register_user(request):
 def profiles(request):
     profiles, search_query = search_profile(request)
     
-    custom_range, profiles = paginator_profile(request, profiles, 3)
+    custom_range, profiles = paginator_profile(request, profiles, 4)
 
     context = {
         'profiles':profiles,
