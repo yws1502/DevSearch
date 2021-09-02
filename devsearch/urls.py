@@ -11,6 +11,8 @@ urlpatterns = [
     path('projects/', include('projects.urls')),
     path('', include('users.urls')),
 
+    path('api/', include('api.urls')),
+
     path('reset_password/',  auth_views.PasswordResetView.\
         as_view(template_name='reset_password.html'), name='reset_password'),
 
