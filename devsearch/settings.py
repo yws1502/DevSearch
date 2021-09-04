@@ -56,9 +56,12 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
 
     'rest_framework',
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
+
     'django.middleware.security.SecurityMiddleware',
 
     'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -172,6 +175,9 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+# CORS 에러 방지 모든 domain을 허용하겠다.
+CORS_ALLOW_ALL_ORIGINS = True
 
 # GET MY PASSWORD
 HOST_PASSWORD = get_key('EMAIL_HOST_PASSWORD')
