@@ -74,6 +74,6 @@ def delete_project(request, pk):
     project = profile.project_set.get(id=pk)
     if request.method == 'POST':
         project.delete()
-        return redirect('projects')
+        return redirect('account')
     context = {'object':project}
     return render(request, 'delete_template.html', context)
