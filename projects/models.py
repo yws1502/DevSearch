@@ -23,6 +23,14 @@ class Project(models.Model):
         ordering = ['-vote_ratio', '-vote_total', 'title']
 
     @property
+    def imageURL(self):
+        try:
+            url = self.featured_image.url
+        except:
+            url = ''
+        return url
+
+    @property
     def reviewers(self): # single-project.html에서 리뷰를 달았는지 확인하기 위해
         queryset = self.review_set.all().values_list('owner__id', flat=True)
         return queryset

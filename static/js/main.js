@@ -1,9 +1,10 @@
+// TO projects/projects.html or users/profiles.html
 //GET SEARCH FORM AND PAGE LINKS
 let searchForm = document.getElementById('searchForm')
 let pageLinks = document.getElementsByClassName('page-link')
 
 // ENSURE SEARCH FORM EXISTS
-if(searchForm){
+if(searchForm) {
     for(let i=0; pageLinks.length > i; i ++){
         pageLinks[i].addEventListener('click', function(e) {
             e.preventDefault()
@@ -18,4 +19,30 @@ if(searchForm){
             searchForm.submit()
         })
     }
+}
+
+// TO projects/project_form.html
+// 스킬 태그들 지우기 js코드
+let tags = document.getElementsByClassName('project-tag')
+
+for (let i=0; tags.length > i; i++) {
+    tags[i].addEventListener('click', (e) => {
+        let tagId = e.target.dataset.tag
+        let projectId = e.target.dataset.project
+
+        // console.log("TAG ID :", tagId)
+        // console.log("project ID :", projectId)
+
+        fetch('http://127.0.0.1:8000/api/remove-tag/', {
+            method: "DELETE",
+            headers: {
+                "Content-Type": 'application/json'
+            },
+            body: JSON.stringify({'project': projectId, 'tag': tagId})
+        })
+        .then(response => response.json())
+        .then(data => {
+            e.target.remove()
+        })
+    })
 }
